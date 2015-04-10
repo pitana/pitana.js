@@ -28,7 +28,8 @@
     "define": true,
     "XMLHttpRequest": true,
     "HTMLElement": true,
-    "Event": true
+    "Event": true,
+    "HTMLTemplateElement": true
   }
 }
 

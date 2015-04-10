@@ -6,17 +6,23 @@
       pitana.Base.apply(this, arguments);
       this.$ = data.ele;
 
-      //Loading Template !!
-      //TODO -Support for underscore template
-      //TODO - Add Sandbox API
-      var str = "";
-      if (typeof this.template === "string") {
-        str = this.template;
+      if (this.template instanceof HTMLTemplateElement) {
+        this.$.appendChild(this.template.content.cloneNode(true));
+      } else {
+        //Loading Template !!
+        //TODO -Support for underscore template
+        //TODO - Add Sandbox API
+        var str = "";
+        if (typeof this.template === "string") {
+          str = this.template;
+        }
+        if (typeof this.template === "function") {
+          str = this.template();
+        }
+        this.$.innerHTML = pitana.settings.postTemplateProcessing(str);
       }
-      if (typeof this.template === "function") {
-        str = this.template();
-      }
-      this.$.innerHTML = pitana.settings.postTemplateProcessing(str);
+
+
 
       this._viewMetadata = {
         eventBus: pitana.settings.GlobalEventBus,
