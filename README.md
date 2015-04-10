@@ -39,5 +39,12 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
 
 # Syntax
 
+* Yes, We have some Sweet syntax - You can compare
+      * progress-bar element using Vanilla JS
+         * https://github.com/nsisodiya/boot-progressbar/blob/gh-pages/src/boot-progressbar.js
+      * Same progressbar Element written again with pitana.js
+         * https://github.com/pitana/pt-progressbar/blob/master/src/pt-progressbar.js
+
+
 
  
