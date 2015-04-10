@@ -1,0 +1,34 @@
+{
+  "curly": true,
+  "forin": true,
+  "immed": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "quotmark": "double",
+  "eqnull": true,
+  "eqeqeq": false,
+  "plusplus": false,
+  "camelcase": true,
+  "latedef": "nofunc",
+  "trailing": true,
+  "multistr": true,
+  "globalstrict": false,
+  "strict": true,
+  "undef": true,
+  "globals": {
+    "module": true,
+    "console": true,
+    "document": true,
+    "pitana": true,
+    "jQuery": true,
+    "Element": true,
+    "history": true,
+    "window": true,
+    "define": true,
+    "XMLHttpRequest": true,
+    "HTMLElement": true,
+    "Event": true
+  }
+}
+

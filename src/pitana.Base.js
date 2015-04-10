@@ -1,0 +1,1 @@
+pitana.Base = pitana.klass({});

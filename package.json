@@ -1,0 +1,30 @@
+{
+  "name": "pitana.js",
+  "version": "1.0.0",
+  "description": "pitana.js, framework for developing large scale modular JavaScript applications using Custom Elements",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pitana/pitana.js.git"
+  },
+  "keywords": [
+    "scalable",
+    "js",
+    "framework",
+    "webcomponents"
+  ],
+  "author": "Narendra Sisodiya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pitana/pitana.js/issues"
+  },
+  "devDependencies": {
+    "grunt": "0.4.2",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-contrib-jshint": "0.6.5",
+    "grunt-contrib-uglify": "0.2.7",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-docco": "0.3.3",
+    "grunt-jsbeautifier": "0.2.4"
+  }
+}
