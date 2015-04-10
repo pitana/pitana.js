@@ -6,7 +6,7 @@
   "use strict";
   pitana.ObjectMap = pitana.Base.extend({
     initialize: function() {
-      this.constructor.parent.apply(this, arguments);
+      pitana.Base.apply(this, arguments);
       this.allNodes = [];
     },
     add: function(obj, val) {

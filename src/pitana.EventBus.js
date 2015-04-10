@@ -4,7 +4,7 @@
   var log = pitana.util.log;
   pitana.EventBus = pitana.Base.extend({
     initialize: function() {
-      this.constructor.parent.apply(this, arguments);
+      pitana.Base.apply(this, arguments);
       this._NewsPaperList = {};
       this._OrderList = [];
     },

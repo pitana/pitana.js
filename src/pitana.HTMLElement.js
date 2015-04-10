@@ -3,7 +3,7 @@
 
   pitana.HTMLElement = pitana.Base.extend({
     initialize: function(data) {
-      this.constructor.parent.apply(this, arguments);
+      pitana.Base.apply(this, arguments);
       this.$ = data.ele;
 
       //Loading Template !!

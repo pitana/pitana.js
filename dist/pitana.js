@@ -102,7 +102,7 @@
   var log = pitana.util.log;
   pitana.EventBus = pitana.Base.extend({
     initialize: function() {
-      this.constructor.parent.apply(this, arguments);
+      pitana.Base.apply(this, arguments);
       this._NewsPaperList = {};
       this._OrderList = [];
     },
@@ -209,7 +209,7 @@
 
   pitana.HTMLElement = pitana.Base.extend({
     initialize: function(data) {
-      this.constructor.parent.apply(this, arguments);
+      pitana.Base.apply(this, arguments);
       this.$ = data.ele;
 
       //Loading Template !!
@@ -339,7 +339,7 @@
   "use strict";
   pitana.ObjectMap = pitana.Base.extend({
     initialize: function() {
-      this.constructor.parent.apply(this, arguments);
+      pitana.Base.apply(this, arguments);
       this.allNodes = [];
     },
     add: function(obj, val) {

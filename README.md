@@ -29,4 +29,8 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
 * What is the meaning of pitana ?
     * it is just a randomly created word.
 
+
+# Syntax
+
+
  
