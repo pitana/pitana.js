@@ -36,6 +36,9 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
    * Bootstraped inspired progressbar
    * Demo - http://pitana.github.io/pt-progressbar
    * SourceCode - https://github.com/pitana/pt-progressbar/blob/master/src/pt-progressbar.js
+* ```pt-pdfslideshow```
+   * Pdf.js based Pdf Slideshow Element
+   * Demo - http://pitana.github.io/pt-pdfslideshow
 
 # Syntax
 
