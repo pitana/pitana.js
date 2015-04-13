@@ -39,6 +39,12 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
 * ```pt-pdfslideshow```
    * Pdf.js based Pdf Slideshow Element
    * Demo - http://pitana.github.io/pt-pdfslideshow
+* ```pt-steps-indicator```
+   * small widget for steps indicator
+   * Demo - http://pitana.github.io/pt-steps-indicator
+   * SourceCode - https://github.com/pitana/pt-steps-indicator/blob/master/src/pt-steps-indicator.js
+
+   
 
 # Syntax
 
