@@ -13,6 +13,7 @@ module.exports = function(grunt) {
     "src/pitana.domEvents.js",
     "src/pitana.HTMLElement.js",
     "src/pitana.ObjectMap.js",
+    "src/pitana.accessorType.js",
     "src/pitana.registerElement.js"
   ];
   grunt.initConfig({

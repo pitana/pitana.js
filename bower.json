@@ -1,7 +1,7 @@
 {
   "name": "pitana.js",
   "repo": "pitana/pitana.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/pitana.js",
   "keywords": [
     "scalable",
