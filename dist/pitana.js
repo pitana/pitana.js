@@ -447,15 +447,22 @@
         ele: this
       });
       pitana.nodeToViewMapping.add(this, view);
-      view.createdCallback.apply(view, arguments);
+      if (typeof view.createdCallback === "function") {
+        view.createdCallback.apply(view, arguments);
+      }
+
     };
     ElementPrototype.attachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
-      view.attachedCallback.apply(view, arguments);
+      if (typeof view.attachedCallback === "function") {
+        view.attachedCallback.apply(view, arguments);
+      }
     };
     ElementPrototype.detachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
-      view.detachedCallback.apply(view, arguments);
+      if (typeof view.detachedCallback === "function") {
+        view.detachedCallback.apply(view, arguments);
+      }
       view._endModule();
       pitana.nodeToViewMapping.remove(this);
     };
@@ -484,7 +491,10 @@
           view[config.onChange].apply(view, mainArgs);
         }
       });
-      view.attributeChangedCallback.apply(view, arguments);
+      if (typeof view.attributeChangedCallback === "function") {
+        view.attributeChangedCallback.apply(view, arguments);
+      }
+
     };
 
     if (ViewConstructor.prototype.accessors !== undefined) {
