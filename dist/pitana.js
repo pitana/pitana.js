@@ -15,6 +15,11 @@
     var Parent;
     if (this !== undefined && this.extend === klass) {
       Parent = this;
+      //if (ChildProto.initialize === undefined) {
+      //  ChildProto.initialize = function () {
+      //    Parent.apply(this, arguments);
+      //  };
+      //}
     } else {
       Parent = Object;
     }
@@ -217,19 +222,17 @@
       } else {
         //Loading Template !!
         //TODO -Support for underscore template
-        //TODO - Add Sandbox API
-        var str = "";
-        if (typeof this.template === "string") {
-          str = this.template;
+        if (this.template !== undefined && this.template !== null) {
+          var str = "";
+          if (typeof this.template === "string") {
+            str = this.template;
+          }
+          if (typeof this.template === "function") {
+            str = this.template();
+          }
+          this.$.innerHTML = pitana.settings.postTemplateProcessing(str);
         }
-        if (typeof this.template === "function") {
-          str = this.template();
-        }
-        this.$.innerHTML = pitana.settings.postTemplateProcessing(str);
       }
-
-
-
       this._viewMetadata = {
         eventBus: pitana.settings.GlobalEventBus,
         topicList: {},

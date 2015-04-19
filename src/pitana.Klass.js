@@ -10,6 +10,11 @@ var pitana = {};
     var Parent;
     if (this !== undefined && this.extend === klass) {
       Parent = this;
+      //if (ChildProto.initialize === undefined) {
+      //  ChildProto.initialize = function () {
+      //    Parent.apply(this, arguments);
+      //  };
+      //}
     } else {
       Parent = Object;
     }
