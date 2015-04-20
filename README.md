@@ -55,5 +55,45 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
          * https://github.com/pitana/pt-progressbar/blob/master/src/pt-progressbar.js
 
 
+# Hello World Example
 
- 
+### Task
+```html
+<hello-world name="James" count="5"></hello-world>
+```
+### index.html
+
+```html
+<h1>Pitna Hello World Element Demo</h1>
+<button onclick="document.getElementById('tag').count=3">Change Count to 3</button>
+<hello-world id="tag" name="James" count="5"></hello-world>
+```
+### js
+
+```js
+pitana.registerElement(pitana.HTMLElement.extend({
+    tagName: "hello-world",
+    accessors: {
+        name: {
+            type: "string"
+        },
+        count: {
+            type: "int",
+            onChange: "attachedCallback"
+        }
+    },
+    initialize: function () {
+        pitana.HTMLElement.apply(this, arguments);
+    },
+    attachedCallback: function () {
+        var s = [];
+        for (var i = 0; i < this.$.count; i++) {
+            s.push("<p>Hello " + this.$.name + "</p>");
+        }
+        this.$.innerHTML = s.join("");
+    }
+}));
+```
+
+### Demo
+* http://jsfiddle.net/nsisodiya/qr2obwyc/
