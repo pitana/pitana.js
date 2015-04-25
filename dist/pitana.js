@@ -399,6 +399,21 @@
     "": true
   };
   pitana.accessorType = {};
+
+  pitana.accessorType.string = {
+    get: function(attrName, attrObj) {
+      var val = this.getAttribute(attrName);
+      if (val !== null) {
+        return val;
+      } else {
+        return attrObj.default;
+      }
+    },
+    set: function(attrName, newVal, attrObj) {
+      this.setAttribute(attrName, newVal);
+    }
+  };
+
   pitana.accessorType.int = {
     get: function(attrName, attrObj) {
       var val = this.getAttribute(attrName);
@@ -416,7 +431,7 @@
   };
 
   pitana.accessorType.boolean = {
-    get: function(attrName) {
+    get: function(attrName, attrObj) {
       var val = boolStringToBoolean[this.getAttribute(attrName)];
       if (val === undefined) {
         return false;
@@ -434,6 +449,34 @@
       }
     }
   };
+
+  pitana.accessorType.json = {
+    get: function(attrName, attrObj) {
+      if (this["_json_" + attrName + "_init_"] === undefined) {
+        var val = this.getAttribute(attrName);
+        if (val === null) {
+          this["_json_" + attrName] = attrObj.default;
+        } else {
+          try {
+            this["_json_" + attrName] = JSON.stringify(val);
+          } catch (ex) {
+            this["_json_" + attrName] = {
+              jsonParseError: true
+            };
+          }
+        }
+        this["_json_" + attrName + "_init_"] = true;
+      }
+      return this["_json_" + attrName];
+    },
+    set: function(attrName, newVal, attrObj) {
+      var oldVal = this[attrName];
+      if (oldVal !== newVal) {
+        this["_json_" + attrName] = newVal;
+        this.setAttribute(attrName, JSON.stringify(newVal));
+      }
+    }
+  };
 })();
 ;/**
  * Created by narendra on 15/3/15.
@@ -443,6 +486,14 @@
   "use strict";
   pitana.nodeToViewMapping = new pitana.ObjectMap();
 
+  pitana.register = function(elementProto) {
+    if (elementProto.initialize === undefined) {
+      elementProto.initialize = function() {
+        pitana.HTMLElement.apply(this, arguments);
+      };
+    }
+    pitana.registerElement(pitana.HTMLElement.extend(elementProto));
+  };
   pitana.registerElement = function(ViewConstructor) {
     var ElementPrototype = Object.create(HTMLElement.prototype);
     ElementPrototype.createdCallback = function() {
@@ -502,30 +553,25 @@
 
     if (ViewConstructor.prototype.accessors !== undefined) {
       pitana.util.for(ViewConstructor.prototype.accessors, function(attrObj, attrName) {
+        if (attrObj.type === undefined) {
+          attrObj.type = "string";
+        }
         var Prop = {};
         Prop[attrName] = {
           get: function() {
-            if (pitana.accessorType[attrObj.type] !== undefined) {
+            if (pitana.accessorType[attrObj.type] !== undefined && typeof pitana.accessorType[attrObj.type].get === "function") {
               return pitana.accessorType[attrObj.type].get.call(this, attrName, attrObj);
-            } else {
-              return this.getAttribute(attrName);
             }
           },
           set: function(newVal) {
-            if (pitana.accessorType[attrObj.type] !== undefined) {
+            if (pitana.accessorType[attrObj.type] !== undefined && typeof pitana.accessorType[attrObj.type].set === "function") {
               pitana.accessorType[attrObj.type].set.call(this, attrName, newVal, attrObj);
-            } else {
-              this.setAttribute(attrName, newVal);
-            }
-            if (typeof attrObj.afterSet === "function") {
-              attrObj.afterSet.apply(pitana.nodeToViewMapping.get(this), arguments);
             }
           }
         };
         Object.defineProperties(ElementPrototype, Prop);
       });
     }
-
     if (typeof document.registerElement === "function") {
       var elementName = ViewConstructor.prototype.tagName.split("-").map(function(v) {
         return v.charAt(0).toUpperCase() + v.slice(1);

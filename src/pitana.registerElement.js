@@ -6,6 +6,14 @@
   "use strict";
   pitana.nodeToViewMapping = new pitana.ObjectMap();
 
+  pitana.register = function(elementProto) {
+    if (elementProto.initialize === undefined) {
+      elementProto.initialize = function() {
+        pitana.HTMLElement.apply(this, arguments);
+      };
+    }
+    pitana.registerElement(pitana.HTMLElement.extend(elementProto));
+  };
   pitana.registerElement = function(ViewConstructor) {
     var ElementPrototype = Object.create(HTMLElement.prototype);
     ElementPrototype.createdCallback = function() {
@@ -65,30 +73,25 @@
 
     if (ViewConstructor.prototype.accessors !== undefined) {
       pitana.util.for(ViewConstructor.prototype.accessors, function(attrObj, attrName) {
+        if (attrObj.type === undefined) {
+          attrObj.type = "string";
+        }
         var Prop = {};
         Prop[attrName] = {
           get: function() {
-            if (pitana.accessorType[attrObj.type] !== undefined) {
+            if (pitana.accessorType[attrObj.type] !== undefined && typeof pitana.accessorType[attrObj.type].get === "function") {
               return pitana.accessorType[attrObj.type].get.call(this, attrName, attrObj);
-            } else {
-              return this.getAttribute(attrName);
             }
           },
           set: function(newVal) {
-            if (pitana.accessorType[attrObj.type] !== undefined) {
+            if (pitana.accessorType[attrObj.type] !== undefined && typeof pitana.accessorType[attrObj.type].set === "function") {
               pitana.accessorType[attrObj.type].set.call(this, attrName, newVal, attrObj);
-            } else {
-              this.setAttribute(attrName, newVal);
-            }
-            if (typeof attrObj.afterSet === "function") {
-              attrObj.afterSet.apply(pitana.nodeToViewMapping.get(this), arguments);
             }
           }
         };
         Object.defineProperties(ElementPrototype, Prop);
       });
     }
-
     if (typeof document.registerElement === "function") {
       var elementName = ViewConstructor.prototype.tagName.split("-").map(function(v) {
         return v.charAt(0).toUpperCase() + v.slice(1);
