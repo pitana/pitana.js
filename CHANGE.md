@@ -1,4 +1,12 @@
 
+1.0.3
+=====
+* if this.template do not present, then do not reset this.$.innerHTML
+* Update README.md
+* added new accessorType
+** string and json
+* modified getter/setter
+* added simple method for register element - pitana.register
 
 1.0.2
 =====

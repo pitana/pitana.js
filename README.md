@@ -71,7 +71,7 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
 ### js
 
 ```js
-pitana.registerElement(pitana.HTMLElement.extend({
+pitana.register({
     tagName: "hello-world",
     accessors: {
         name: {
@@ -82,9 +82,6 @@ pitana.registerElement(pitana.HTMLElement.extend({
             onChange: "attachedCallback"
         }
     },
-    initialize: function () {
-        pitana.HTMLElement.apply(this, arguments);
-    },
     attachedCallback: function () {
         var s = [];
         for (var i = 0; i < this.$.count; i++) {
@@ -92,7 +89,7 @@ pitana.registerElement(pitana.HTMLElement.extend({
         }
         this.$.innerHTML = s.join("");
     }
-}));
+});
 ```
 
 ### Demo
