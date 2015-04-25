@@ -30,12 +30,12 @@
       ele.addEventListener(eventName, callback, false);
       return callback;
     },
-    trigger: function(target, type, options) {
+    trigger: function(target, type, detail, options) {
       if (options === undefined) {
         options = {};
       }
       var event = document.createEvent("CustomEvent");
-      event.initCustomEvent(type, options.bubbles !== false, options.cancelable !== false);
+      event.initCustomEvent(type, options.bubbles !== false, options.cancelable !== false, detail);
       target.dispatchEvent(event);
     }
   };

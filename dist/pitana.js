@@ -199,12 +199,12 @@
       ele.addEventListener(eventName, callback, false);
       return callback;
     },
-    trigger: function(target, type, options) {
+    trigger: function(target, type, detail, options) {
       if (options === undefined) {
         options = {};
       }
       var event = document.createEvent("CustomEvent");
-      event.initCustomEvent(type, options.bubbles !== false, options.cancelable !== false);
+      event.initCustomEvent(type, options.bubbles !== false, options.cancelable !== false, detail);
       target.dispatchEvent(event);
     }
   };
@@ -312,9 +312,9 @@
         delete this._viewMetadata.eventsMap[key];
       }
     },
-    trigger: function(eventName) {
+    trigger: function(eventName, detail) {
       //Default Trigger will be on this.$ which is our custom event.
-      pitana.domEvents.trigger(this.$, eventName);
+      pitana.domEvents.trigger(this.$, eventName, detail);
     },
     _endModule: function() {
 

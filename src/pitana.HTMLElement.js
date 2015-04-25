@@ -101,9 +101,9 @@
         delete this._viewMetadata.eventsMap[key];
       }
     },
-    trigger: function(eventName) {
+    trigger: function(eventName, detail) {
       //Default Trigger will be on this.$ which is our custom event.
-      pitana.domEvents.trigger(this.$, eventName);
+      pitana.domEvents.trigger(this.$, eventName, detail);
     },
     _endModule: function() {
 
