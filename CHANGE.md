@@ -1,4 +1,8 @@
 
+1.0.4
+=====
+* Fixed bug related to custom Event firing.
+
 1.0.3
 =====
 * if this.template do not present, then do not reset this.$.innerHTML
