@@ -1,4 +1,7 @@
 
+1.0.6
+=====
+* Bug Fixed : globalEventBus was missing. Now added.
 
 1.0.5
 =====

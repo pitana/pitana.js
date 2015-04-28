@@ -145,7 +145,7 @@ pitana.register({
         this.render();
     },
     render: function(){
-        this.publish("STARS_CHANGED", this.$.count);
+        this.publishGlobalEvent("STARS_CHANGED", this.$.count);
         var str = "";
         var count = this.$.count;
         for(var i=0; i< count; i++){
