@@ -1,0 +1,21 @@
+{
+  "name": "pitana/pitana.js",
+  "description": "pitana.js, framework for developing large scale modular JavaScript applications using Custom Elements",
+  "repo": "pitana/pitana.js",
+  "version": "1.0.6",
+  "main": "dist/pitana.js",
+  "keywords": [
+    "scalable",
+    "framework",
+    "webcomponents"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pitana/pitana.js.git"
+  },
+  "require": {
+ 	"webmodules/webcomponentsjs": ">=0.5.2"
+  }
+}
