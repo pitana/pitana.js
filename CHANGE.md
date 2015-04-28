@@ -1,4 +1,9 @@
 
+
+1.0.5
+=====
+* Bug Fixed : chrome was not handling cloneNode. migrated to importNode
+
 1.0.4
 =====
 * Fixed bug related to custom Event firing.
