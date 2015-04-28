@@ -31,7 +31,8 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
 
 
 #Watch Video 
-* https://www.youtube.com/watch?v=gI0un44VQoA
+[![Alt text for your video](http://i1.ytimg.com/vi/gI0un44VQoA/wide_360p_v4767437.jpg)](https://www.youtube.com/watch?v=gI0un44VQoA)
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gI0un44VQoA" frameborder="0" allowfullscreen></iframe>
 
