@@ -30,6 +30,11 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
     * it is just a randomly created word.
 
 
+#Watch Video 
+* https://www.youtube.com/watch?v=gI0un44VQoA
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gI0un44VQoA" frameborder="0" allowfullscreen></iframe>
+
 # Syntax
 
 * Yes, We have some Sweet syntax - You can compare
