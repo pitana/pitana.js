@@ -7,7 +7,7 @@
       this.$ = data.ele;
 
       if (this.template instanceof HTMLTemplateElement) {
-        this.$.appendChild(this.template.content.cloneNode(true));
+        this.$.appendChild(document.importNode(this.template.content, true));
       } else {
         //Loading Template !!
         //TODO -Support for underscore template
