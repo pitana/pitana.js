@@ -9,6 +9,7 @@ Small Library on top of webcomponents.js for creating Reusable Custom Elements.
 * What? Custom Elements ?
     * Yes, Webcomponents.js provide Polyfills for Custom Elements, HTML Imports and Shadow DOM.
 * So, Can I use this library with my existing Frameworks & CodeBase.
+    * You can use this library with react.js, backbone.js, and all possible frameworks and libraries.
     * Yes, All you need to load - webcomponents-lite.min.js (36KB) + pitana.min.js (8KB)
     * Basic knowledge of WebComponents
     * Only supported in Modern Browser.
