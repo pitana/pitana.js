@@ -1,6 +1,8 @@
 (function() {
   "use strict";
 
+  pitana.settings.GlobalEventBus = new pitana.EventBus();
+
   pitana.HTMLElement = pitana.Base.extend({
     initialize: function(data) {
       pitana.Base.apply(this, arguments);
