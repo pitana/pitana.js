@@ -1,6 +1,6 @@
 {
   "name": "pitana.js",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "pitana.js, framework for developing large scale modular JavaScript applications using Custom Elements",
   "repository": {
     "type": "git",

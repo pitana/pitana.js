@@ -452,6 +452,19 @@
     }
   };
 
+
+  pitana.accessorType.readOnly = {
+    get: function(attrName, attrObj) {
+      var view = pitana.nodeToViewMapping.get(this);
+      var f = view[attrObj.get];
+      if (typeof f === "function") {
+        return f.apply(view, arguments);
+      }
+    },
+    set: function(attrName, newVal, attrObj) {
+      //Sorry, readOnly access
+    }
+  };
   pitana.accessorType.json = {
     get: function(attrName, attrObj) {
       if (this["_json_" + attrName + "_init_"] === undefined) {

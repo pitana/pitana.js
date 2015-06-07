@@ -2,7 +2,7 @@
   "name": "pitana/pitana.js",
   "description": "pitana.js, framework for developing large scale modular JavaScript applications using Custom Elements",
   "repo": "pitana/pitana.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "dist/pitana.js",
   "keywords": [
     "scalable",

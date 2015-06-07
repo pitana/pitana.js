@@ -1,4 +1,8 @@
 
+1.0.7
+=====
+* added accessorType = readOnly
+
 1.0.6
 =====
 * Bug Fixed : globalEventBus was missing. Now added.
