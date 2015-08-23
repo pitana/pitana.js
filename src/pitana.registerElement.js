@@ -48,13 +48,13 @@
         var view = pitana.nodeToViewMapping.get(this);
         var f = view[methodName];
         if (typeof f === "function") {
-          f.apply(view, args);
+          return f.apply(view, args);
         }
       };
       //Append method on EP
       ViewConstructor.prototype.methods.map(function(methodName, i) {
         ElementPrototype[methodName] = function() {
-          ElementPrototype._commonMethod.call(this, methodName, arguments);
+          return ElementPrototype._commonMethod.call(this, methodName, arguments);
         };
       });
     }
