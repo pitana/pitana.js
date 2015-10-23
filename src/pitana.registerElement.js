@@ -22,21 +22,33 @@
       });
       pitana.nodeToViewMapping.add(this, view);
       if (view !==undefined && typeof view.createdCallback === "function") {
-        view.createdCallback.apply(view, arguments);
+        try{
+          view.createdCallback.apply(view, arguments);
+        } catch (e){
+          console.error("pitana:createdCallback:exception",e);
+        }
       }
 
     };
     ElementPrototype.attachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
       if (view !==undefined && typeof view.attachedCallback === "function") {
-        view.attachedCallback.apply(view, arguments);
+        try{
+          view.attachedCallback.apply(view, arguments);
+        } catch (e){
+          console.error("pitana:attachedCallback:exception",e);
+        }
       }
     };
     ElementPrototype.detachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
       if (view !== undefined) {
         if (typeof view.detachedCallback === "function") {
-          view.detachedCallback.apply(view, arguments);
+          try{
+            view.detachedCallback.apply(view, arguments);
+          } catch (e){
+            console.error("pitana:detachedCallback:exception",e);
+          }
         }
         view._endModule();
         pitana.nodeToViewMapping.remove(this);
