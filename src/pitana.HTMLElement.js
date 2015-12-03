@@ -121,7 +121,9 @@
       });
 
       //Remove all HTML inside this.$
-      this.$.innerHTML = "";
+      if(!this.preserveHTML){
+        this.$.innerHTML = "";
+      }
 
       //unSubscribe All globalEvents
       pitana.util.for(this._viewMetadata.topicList, function(v, topic) {
