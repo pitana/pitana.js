@@ -74,15 +74,16 @@
     ElementPrototype.attributeChangedCallback = function(attrName) {
       var view = pitana.nodeToViewMapping.get(this);
       var mainArgs = arguments;
-      pitana.util.for(view.accessors, function(config, name) {
-        if (name.toLowerCase() === attrName && typeof config.onChange === "string") {
-          view[config.onChange].apply(view, mainArgs);
+      if(view!==undefined){
+        pitana.util.for(view.accessors, function(config, name) {
+          if (name.toLowerCase() === attrName && typeof config.onChange === "string") {
+            view[config.onChange].apply(view, mainArgs);
+          }
+        });
+        if (typeof view.attributeChangedCallback === "function") {
+          view.attributeChangedCallback.apply(view, arguments);
         }
-      });
-      if (typeof view.attributeChangedCallback === "function") {
-        view.attributeChangedCallback.apply(view, arguments);
       }
-
     };
 
     if (ViewConstructor.prototype.accessors !== undefined) {
