@@ -529,11 +529,13 @@
     };
     ElementPrototype.detachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
-      if (typeof view.detachedCallback === "function") {
-        view.detachedCallback.apply(view, arguments);
+      if (view !== undefined) {
+        if (typeof view.detachedCallback === "function") {
+          view.detachedCallback.apply(view, arguments);
+        }
+        view._endModule();
+        pitana.nodeToViewMapping.remove(this);
       }
-      view._endModule();
-      pitana.nodeToViewMapping.remove(this);
     };
 
     if (ViewConstructor.prototype.methods !== undefined) {
