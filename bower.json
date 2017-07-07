@@ -1,7 +1,6 @@
 {
   "name": "pitana.js",
   "repo": "pitana/pitana.js",
-  "version": "1.0.7",
   "main": "dist/pitana.js",
   "keywords": [
     "scalable",
@@ -16,6 +15,7 @@
     "url": "git://github.com/pitana/pitana.js.git"
   },
   "dependencies": {
-    "webcomponents.js": "~0.6.0"
+    "webcomponents.js": "~1.0.1",
+    "webmodules-webcomponentsjs": "~1.0.1"
   }
 }
