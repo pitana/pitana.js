@@ -2,19 +2,24 @@
   "name": "pitana/pitana.js",
   "pitana/pitana.js": {
     "js": [
-      "src/pitana.Klass.js",
-      "src/pitana.Base.js",
-      "src/pitana.settings.js",
-      "src/pitana.util.js",
-      "src/pitana.EventBus.js",
-      "src/pitana.domEvents.js",
       "src/pitana.HTMLElement.js",
       "src/pitana.ObjectMap.js",
       "src/pitana.accessorType.js",
       "src/pitana.registerElement.js"
     ],
     "on": [
+      "pitana/pitana.js/domevents",
       "webmodules/webcomponents/lite"
+    ]
+  },
+  "pitana/pitana.js/domevents": {
+    "js": [
+      "src/pitana.Klass.js",
+      "src/pitana.Base.js",
+      "src/pitana.settings.js",
+      "src/pitana.util.js",
+      "src/pitana.EventBus.js",
+      "src/pitana.domEvents.js"
     ]
   }
 }
