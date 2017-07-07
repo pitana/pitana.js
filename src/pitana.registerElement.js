@@ -21,14 +21,14 @@
         ele: this
       });
       pitana.nodeToViewMapping.add(this, view);
-      if (typeof view.createdCallback === "function") {
+      if (view !==undefined && typeof view.createdCallback === "function") {
         view.createdCallback.apply(view, arguments);
       }
 
     };
     ElementPrototype.attachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
-      if (typeof view.attachedCallback === "function") {
+      if (view !==undefined && typeof view.attachedCallback === "function") {
         view.attachedCallback.apply(view, arguments);
       }
     };
