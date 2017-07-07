@@ -121,7 +121,7 @@
       });
 
       //Remove all HTML inside this.$
-      if(!this.preserveHTML){
+      if (!this.preserveHTML) {
         this.$.innerHTML = "";
       }
 

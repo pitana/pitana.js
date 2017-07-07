@@ -21,22 +21,22 @@
         ele: this
       });
       pitana.nodeToViewMapping.add(this, view);
-      if (view !==undefined && typeof view.createdCallback === "function") {
-        try{
+      if (view !== undefined && typeof view.createdCallback === "function") {
+        try {
           view.createdCallback.apply(view, arguments);
-        } catch (e){
-          console.error("pitana:createdCallback:exception",e);
+        } catch (e) {
+          console.error("pitana:createdCallback:exception", e);
         }
       }
 
     };
     ElementPrototype.attachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
-      if (view !==undefined && typeof view.attachedCallback === "function") {
-        try{
+      if (view !== undefined && typeof view.attachedCallback === "function") {
+        try {
           view.attachedCallback.apply(view, arguments);
-        } catch (e){
-          console.error("pitana:attachedCallback:exception",e);
+        } catch (e) {
+          console.error("pitana:attachedCallback:exception", e);
         }
       }
     };
@@ -44,10 +44,10 @@
       var view = pitana.nodeToViewMapping.get(this);
       if (view !== undefined) {
         if (typeof view.detachedCallback === "function") {
-          try{
+          try {
             view.detachedCallback.apply(view, arguments);
-          } catch (e){
-            console.error("pitana:detachedCallback:exception",e);
+          } catch (e) {
+            console.error("pitana:detachedCallback:exception", e);
           }
         }
         view._endModule();
@@ -74,7 +74,7 @@
     ElementPrototype.attributeChangedCallback = function(attrName) {
       var view = pitana.nodeToViewMapping.get(this);
       var mainArgs = arguments;
-      if(view!==undefined){
+      if (view !== undefined) {
         pitana.util.for(view.accessors, function(config, name) {
           if (name.toLowerCase() === attrName && typeof config.onChange === "string") {
             view[config.onChange].apply(view, mainArgs);
@@ -112,7 +112,7 @@
         return v.charAt(0).toUpperCase() + v.slice(1);
       }).join("") + "Element";
       window[elementName] = document.registerElement(ViewConstructor.prototype.tagName, {
-        extends : ViewConstructor.prototype.extends,
+        extends: ViewConstructor.prototype.extends,
         prototype: ElementPrototype
       });
     } else {

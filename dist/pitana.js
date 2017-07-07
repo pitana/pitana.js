@@ -332,7 +332,9 @@
       });
 
       //Remove all HTML inside this.$
-      this.$.innerHTML = "";
+      if (!this.preserveHTML) {
+        this.$.innerHTML = "";
+      }
 
       //unSubscribe All globalEvents
       pitana.util.for(this._viewMetadata.topicList, function(v, topic) {
@@ -516,22 +518,34 @@
         ele: this
       });
       pitana.nodeToViewMapping.add(this, view);
-      if (typeof view.createdCallback === "function") {
-        view.createdCallback.apply(view, arguments);
+      if (view !== undefined && typeof view.createdCallback === "function") {
+        try {
+          view.createdCallback.apply(view, arguments);
+        } catch (e) {
+          console.error("pitana:createdCallback:exception", e);
+        }
       }
 
     };
     ElementPrototype.attachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
-      if (typeof view.attachedCallback === "function") {
-        view.attachedCallback.apply(view, arguments);
+      if (view !== undefined && typeof view.attachedCallback === "function") {
+        try {
+          view.attachedCallback.apply(view, arguments);
+        } catch (e) {
+          console.error("pitana:attachedCallback:exception", e);
+        }
       }
     };
     ElementPrototype.detachedCallback = function() {
       var view = pitana.nodeToViewMapping.get(this);
       if (view !== undefined) {
         if (typeof view.detachedCallback === "function") {
-          view.detachedCallback.apply(view, arguments);
+          try {
+            view.detachedCallback.apply(view, arguments);
+          } catch (e) {
+            console.error("pitana:detachedCallback:exception", e);
+          }
         }
         view._endModule();
         pitana.nodeToViewMapping.remove(this);
@@ -543,13 +557,13 @@
         var view = pitana.nodeToViewMapping.get(this);
         var f = view[methodName];
         if (typeof f === "function") {
-          f.apply(view, args);
+          return f.apply(view, args);
         }
       };
       //Append method on EP
       ViewConstructor.prototype.methods.map(function(methodName, i) {
         ElementPrototype[methodName] = function() {
-          ElementPrototype._commonMethod.call(this, methodName, arguments);
+          return ElementPrototype._commonMethod.call(this, methodName, arguments);
         };
       });
     }
@@ -557,15 +571,16 @@
     ElementPrototype.attributeChangedCallback = function(attrName) {
       var view = pitana.nodeToViewMapping.get(this);
       var mainArgs = arguments;
-      pitana.util.for(view.accessors, function(config, name) {
-        if (name.toLowerCase() === attrName && typeof config.onChange === "string") {
-          view[config.onChange].apply(view, mainArgs);
+      if (view !== undefined) {
+        pitana.util.for(view.accessors, function(config, name) {
+          if (name.toLowerCase() === attrName && typeof config.onChange === "string") {
+            view[config.onChange].apply(view, mainArgs);
+          }
+        });
+        if (typeof view.attributeChangedCallback === "function") {
+          view.attributeChangedCallback.apply(view, arguments);
         }
-      });
-      if (typeof view.attributeChangedCallback === "function") {
-        view.attributeChangedCallback.apply(view, arguments);
       }
-
     };
 
     if (ViewConstructor.prototype.accessors !== undefined) {
@@ -594,6 +609,7 @@
         return v.charAt(0).toUpperCase() + v.slice(1);
       }).join("") + "Element";
       window[elementName] = document.registerElement(ViewConstructor.prototype.tagName, {
+        extends: ViewConstructor.prototype.extends,
         prototype: ElementPrototype
       });
     } else {
