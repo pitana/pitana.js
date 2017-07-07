@@ -99,6 +99,7 @@
         return v.charAt(0).toUpperCase() + v.slice(1);
       }).join("") + "Element";
       window[elementName] = document.registerElement(ViewConstructor.prototype.tagName, {
+        extends : ViewConstructor.prototype.extends,
         prototype: ElementPrototype
       });
     } else {
