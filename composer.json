@@ -16,6 +16,6 @@
     "url": "git://github.com/pitana/pitana.js.git"
   },
   "require": {
- 	"webmodules/webcomponentsjs": ">=0.5.2"
+ 	"webmodules/webcomponentsjs": "0.7.22"
   }
 }

@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "webcomponents.js": "~1.0.1",
-    "webmodules-webcomponentsjs": "~1.0.1"
+    "webmodules-webcomponentsjs": "0.7.22"
   }
 }
